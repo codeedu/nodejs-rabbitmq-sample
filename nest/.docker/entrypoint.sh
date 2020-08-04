@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cd /home/node/app
+cd /home/node/nest
 
 npm install
-npm start
+npm run start:dev
 
 
