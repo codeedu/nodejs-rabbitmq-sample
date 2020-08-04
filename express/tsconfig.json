@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "target": "es2017",
+      "outDir": "dist",
+      "module": "CommonJS",
+      "sourceMap": true,
+      "declaration": true,
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "importHelpers": true
+    }
+  }

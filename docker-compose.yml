@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+
+  express:
+    build: ./express
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: nodejs-rabbitmq-express
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 3001:3000
+    volumes:
+      - ./express:/home/node/express
+
+  nest:
+    build: ./nest
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: nodejs-rabbitmq-nest
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./nest:/home/node/nest
+
+  rabbitmq:
+    image: "rabbitmq:3.8-management-alpine"
+    container_name: nodejs-rabbitmq-rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - "./.rabbitmq_data:/var/lib/rabbitmq/mnesia"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
