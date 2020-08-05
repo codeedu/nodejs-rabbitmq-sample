@@ -12,6 +12,8 @@ services:
       - 3001:3000
     volumes:
       - ./express:/home/node/express
+    depends_on: 
+      - rabbitmq
 
   nest:
     build: ./nest
@@ -23,6 +25,8 @@ services:
       - 3000:3000
     volumes:
       - ./nest:/home/node/nest
+    depends_on: 
+      - rabbitmq
 
   rabbitmq:
     image: "rabbitmq:3.8-management-alpine"
