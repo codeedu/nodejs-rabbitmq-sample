@@ -7,6 +7,7 @@ import logger from 'morgan';
 import indexRouter from './routes';
 import usersRouter from './routes/users';
 import rabbitmqTestRouter from './routes/rabbitmq-test';
+import RabbitmqServer from './rabbitmq-server';
 
 var app = express();
 
@@ -39,5 +40,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const consumer = async () => {
+  const server = new RabbitmqServer('amqp://admin:admin@rabbitmq:5672');
+  await server.start();
+  await server.consume('express', (message) => console.log(message.content.toString()));
+}
+
+consumer();
 
 export default app;
